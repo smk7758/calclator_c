@@ -1,5 +1,10 @@
 #include "eval.h"
 
+#define plus(s1,s2) (s1)+(s2)
+#define minus(s1,s2) (s1)-(s2)
+#define multiply(s1,s2) (s1)*(s2)
+#define divide(s1,s2) (s1)/(s2)
+
 int eval(Node *root) {
     int val0, val1;
     if (root->left != NULL) {
@@ -30,13 +35,13 @@ int calc(Node *n) {
 int calcWithOperand(int left, int right, char operator) {
     switch (operator) {
         case '+':
-            return left + right;
+            return plus(left, right);
         case '-':
-            return left - right;
+            return minus(left, right);
         case '*':
-            return left * right;
+            return multiply(left,right);
         case '/':
-            return left / right;
+            return divide(left, right);
         default:
             printf("[Error] calcWithOperand function, cannot get operand.");
     }

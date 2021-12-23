@@ -6,6 +6,7 @@ all: $(OBJECTS)
 
 install: all
 	./calclator.out
+	./calclator.out test
 
 clean:
-	-rm calclator calclator.out
+	-rm -i calclator.out
