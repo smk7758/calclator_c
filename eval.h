@@ -7,4 +7,4 @@
 
 int eval(Node *node);
 int calc(Node *n);
-int calcWithOperand(int left, int right, char operand);
+int calcWithOperand(int left, int right, char operator, Node* node);

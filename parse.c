@@ -8,9 +8,9 @@ Node* parse(char s[]) {
 Node* first(char s[], int *i) {
     Node *left = second(s, i);
     while (s[*i] == '+' || s[*i] == '-') {
-        char op = s[*i];
+        char operand = s[*i];
         (*i)++;
-        Node *node = node_new_operator(op);
+        Node *node = node_new_operator(operand);
         node->left = left;
         node->right = second(s, i);
         left = node;
@@ -22,11 +22,11 @@ Node* first(char s[], int *i) {
 Node* second(char s[], int *i) {
     Node *left = third(s, i);
     while (s[*i] == '*' || s[*i] == '/') {
-        char op = s[*i];
+        char operand = s[*i];
         (*i)++;
-        Node *node = node_new_operator(op);
+        Node *node = node_new_operator(operand);
         node->left = left;
-        node->right = third(s, i);
+        node->right = fourth(s, i);
 
         left = node;
     }
@@ -34,7 +34,29 @@ Node* second(char s[], int *i) {
     return left;
 }
 
+double pow_(double left, double right) {
+    return pow(left, right);
+}
+
 Node* third(char s[], int *i) {
+    Node *left = fourth(s, i);
+    while (s[*i] == '^') {
+        (*i)++;
+        
+        char operand = s[*i]; // "^"
+        Node *node = node_new_operator(operand);
+        node->calcOperator = pow_; // 関数ポインタ
+
+        node->left = left;
+        node->right = fourth(s, i);
+
+        left = node;
+    }
+
+    return left;
+}
+
+Node* fourth(char s[], int *i) {
     if (isDigit(s[*i])) return number(s, i);
 
     // 構文が正しければ、このときs[i] == '('

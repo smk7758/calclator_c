@@ -2,7 +2,7 @@ OBJECTS = calclator.c node.c parse.c eval.c
 CC = gcc
 
 all: $(OBJECTS)
-	$(CC) $(OBJECTS) -o calclator.out
+	$(CC) $(OBJECTS) -o calclator.out -lm
 
 install: all
 	./calclator.out
@@ -10,3 +10,4 @@ install: all
 
 clean:
 	-rm -i calclator.out
+

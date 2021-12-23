@@ -14,7 +14,7 @@ int eval(Node *root) {
         val1 = calc(root->right);
     }
     if (root->operator != NULL) {
-    return calcWithOperand(val0, val1, root->operator);
+        return calcWithOperand(val0, val1, root->operator, root);
     }
     if (root->left != NULL || root->right != NULL) {
         printf("There are no expression.");
@@ -26,15 +26,17 @@ int calc(Node *n) {
     if (n->operand != NULL) {
         return n->operand;
     } else if (n->operator != NULL) {
-        calcWithOperand(calc(n->left), calc(n->right), n->operator);
+        calcWithOperand(calc(n->left), calc(n->right), n->operator, n);
     } else {
         printf("[Error] calc function.");
     }
 }
 
-int calcWithOperand(int left, int right, char operator) {
+int calcWithOperand(int left, int right, char operator, Node* node) {
+    double (* calcOperator)(double, double);
     switch (operator) {
         case '+':
+            // calcOperator = plus;
             return plus(left, right);
         case '-':
             return minus(left, right);
@@ -42,7 +44,10 @@ int calcWithOperand(int left, int right, char operator) {
             return multiply(left,right);
         case '/':
             return divide(left, right);
-        default:
-            printf("[Error] calcWithOperand function, cannot get operand.");
+        // default:
+            // printf("[Error] calcWithOperand function, cannot get operand.");
     }
+
+    calcOperator = node->calcOperator;
+    return (* calcOperator)(left, right);
 }

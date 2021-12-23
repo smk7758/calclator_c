@@ -12,6 +12,7 @@ typedef struct __node {
 
     int operand;
     char operator;
+    double (* calcOperator)(double, double);
 
     struct __node *left;
     struct __node *right;
