@@ -1,4 +1,4 @@
-OBJECTS = calclator.c node.c
+OBJECTS = calclator.c node.c parse.c eval.c 
 CC = gcc
 
 all: $(OBJECTS)

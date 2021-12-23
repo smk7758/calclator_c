@@ -1,17 +1,17 @@
+#pragma once
 
-int calc(Node *n);
-int calcWithOperand(int left, int right, char operand);
+#include <stdio.h>
+#include <string.h>
+#include "node.h"
+#include "parse.h"
+#include "eval.h"
+#include "vector.h"
 
+#define NULL ((void *)0)
+#define FALSE 0
+#define TRUE 1
 
-int eval(Node *node);
+#define DEFAULT_LINE_SIZE 128
 
-Node *parse(char s[]);
+int main(int argc, char** argv);
 
-Node *first(char s[], int *i);
-Node *second(char s[], int *i);
-Node *third(char s[], int *i);
-Node *number(char s[], int *i);
-
-int toInt(char s);
-int isDigits(char c[]);
-int isDigit(char c);
